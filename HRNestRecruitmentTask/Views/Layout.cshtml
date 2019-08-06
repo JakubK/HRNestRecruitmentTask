@@ -6,6 +6,11 @@
     <title>HRNestRecruitmentTask</title>
 </head>
 <body>
+  <nav>
+    @Html.ActionLink("Home", "Index", "Home")
+    @Html.ActionLink("Register", "Register", "Auth")
+    @Html.ActionLink("Login", "Login", "Auth")
+  </nav>
     @RenderBody()
 </body>
 </html>
