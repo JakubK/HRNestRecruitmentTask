@@ -1,3 +1,4 @@
+using HRNestRecruitmentTask.Models;
 using HRNestRecruitmentTask.Repository;
 using HRNestRecruitmentTask.Services;
 using System;
@@ -43,7 +44,7 @@ namespace HRNestRecruitmentTask
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-             container.RegisterSingleton<IRepository, Repository.Repository>();
+             container.RegisterSingleton<IRepository<Contact>, ContactRepository>();
              container.RegisterType<IDatabaseSeeder, DatabaseSeeder>();
         
         }

@@ -12,8 +12,8 @@ namespace HRNestRecruitmentTask.Controllers
 {
     public class HomeController : Controller
     {
-        IRepository _repository;
-        public HomeController(IRepository repository, IDatabaseSeeder seeder)
+        IRepository<Contact> _repository;
+        public HomeController(IRepository<Contact> repository, IDatabaseSeeder seeder)
         {
             _repository = repository;
             seeder.Seed();
@@ -21,7 +21,7 @@ namespace HRNestRecruitmentTask.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(_repository.GetContacts(););
+            return View(_repository.GetAll());
         }
     }
 }

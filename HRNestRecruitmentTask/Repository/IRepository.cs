@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace HRNestRecruitmentTask.Repository
 {
-    public interface IRepository
+    public interface IRepository<T> where T : class
     {
-        IEnumerable<Contact> GetContacts();
+        IEnumerable<T> GetAll();
 
-        void AddContact(Contact contact);
-        void AddContacts(IEnumerable<Contact> contacts);
+        void Add(T contact);
+        void AddRange(IEnumerable<T> contacts);
     }
 }
