@@ -1,0 +1,23 @@
+﻿@model HRNestRecruitmentTask.Models.LoginViewModel
+
+@{
+  ViewBag.Title = "Login";
+  Layout = "~/Views/Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+<form method="post">
+  @Html.TextBoxFor(x => x.Email,new
+    {
+      placeholder = "Email"
+    })
+  @Html.ValidationMessageFor(x => x.Email)<br />
+
+  @Html.PasswordFor(x => x.Password,new
+    {
+      placeholder = "Password"
+    })
+  @Html.ValidationMessageFor(x => x.Password)<br />
+  <button type="submit">Submit</button>
+</form>
