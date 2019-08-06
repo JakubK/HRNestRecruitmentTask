@@ -1,17 +1,25 @@
-﻿
+﻿@using HRNestRecruitmentTask.Models
+
+@model IEnumerable<Contact>
+
 @{
-    Layout = null;
+    Layout = "../Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Contact c in Model)
+    {
+    <tr>
+      <td>@c.Name</td>
+      <td>@c.Surname</td>
+    </tr>
+    }
+  </tbody>
+</table>
