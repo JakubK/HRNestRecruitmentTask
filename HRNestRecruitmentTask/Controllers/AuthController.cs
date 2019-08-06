@@ -50,5 +50,24 @@ namespace HRNestRecruitmentTask.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel login)
+        {
+            if(ModelState.IsValid)
+            {
+                if(_repository.GetAll().First(x => x.Email == login.Email && x.Password == login.Password) != null)
+                {
+
+                }
+                else
+                {
+                    //Bad Credentials
+                    ModelState.AddModelError("", "Credentials provided by you are invalid");
+                }
+            }
+
+            return View();
+        }
     }
 }
