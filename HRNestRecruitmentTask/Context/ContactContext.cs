@@ -1,4 +1,5 @@
 ﻿using HRNestRecruitmentTask.Models;
+using HRNestRecruitmentTask.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,11 +10,11 @@ namespace HRNestRecruitmentTask.Context
 {
     public class ContactContext : DbContext
     {
-        public ContactContext() : base()
+        public ContactContext() : base("ContactContex")
         {
-
         }
 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

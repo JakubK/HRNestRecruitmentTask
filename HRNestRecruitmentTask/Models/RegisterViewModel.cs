@@ -13,7 +13,7 @@ namespace HRNestRecruitmentTask.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$", ErrorMessage = "The password is not strong enough")]
+        [RegularExpression("(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "The password is not strong enough")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

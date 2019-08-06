@@ -26,13 +26,21 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid && register.Password == register.PasswordRepeat)
             {
-                _repository.Add(new User
+                if (_repository.GetAll().First(x => x.Email == register.Email) == null)
                 {
-                    Email = register.Email,
-                    Password = register.Password
-                });
+                    _repository.Add(new User
+                    {
+                        Email = register.Email,
+                        Password = register.Password
+                    });
 
-                return RedirectToAction("Login");
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    //Email taken
+                    ModelState.AddModelError("", "The email that you passed is already taken");
+                }
             }
 
             return View();
