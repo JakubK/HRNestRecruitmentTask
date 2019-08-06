@@ -1,4 +1,5 @@
 using HRNestRecruitmentTask.Repository;
+using HRNestRecruitmentTask.Services;
 using System;
 
 using Unity;
@@ -43,6 +44,8 @@ namespace HRNestRecruitmentTask
 
             // TODO: Register your type's mappings here.
              container.RegisterSingleton<IRepository, Repository.Repository>();
+             container.RegisterType<IDatabaseSeeder, DatabaseSeeder>();
+        
         }
     }
 }

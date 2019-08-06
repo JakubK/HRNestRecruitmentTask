@@ -129,6 +129,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Services\DatabaseSeeder.cs" />
+    <Compile Include="Services\IDatabaseSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
