@@ -1,3 +1,4 @@
+using HRNestRecruitmentTask.Repository;
 using System;
 
 using Unity;
@@ -41,7 +42,7 @@ namespace HRNestRecruitmentTask
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
+             container.RegisterSingleton<IRepository, Repository.Repository>();
         }
     }
 }
