@@ -11,7 +11,7 @@ namespace HRNestRecruitmentTask.Repository
     {
         IEnumerable<T> GetAll();
 
-        void Add(T contact);
-        void AddRange(IEnumerable<T> contacts);
+        void Add(T entity);
+        void AddRange(IEnumerable<T> entities);
     }
 }

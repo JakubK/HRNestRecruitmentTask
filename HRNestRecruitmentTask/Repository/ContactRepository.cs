@@ -12,9 +12,9 @@ namespace HRNestRecruitmentTask.Repository
     {
         ContactContext context;
         
-        public ContactRepository()
+        public ContactRepository(ContactContext ctx)
         {
-           context = new ContactContext();
+            context = ctx;
         }
 
         public void Add(Contact contact)
