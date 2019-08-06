@@ -15,7 +15,6 @@ namespace HRNestRecruitmentTask.Repository
             context = ctx;
         }
 
-
         public void Add(User user)
         {
             context.Users.Add(user);

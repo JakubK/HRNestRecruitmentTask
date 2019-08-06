@@ -1,4 +1,5 @@
 ﻿using HRNestRecruitmentTask.Models;
+using HRNestRecruitmentTask.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,12 @@ namespace HRNestRecruitmentTask.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: Auth
+        IRepository<User> _repository;
+        public AuthController(IRepository<User> repo)
+        {
+            _repository = repo;
+        }
+
         public ActionResult Register()
         {
             return View();
@@ -20,7 +26,11 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid && register.Password == register.PasswordRepeat)
             {
-                System.Diagnostics.Debug.WriteLine("Corret reigster");
+                _repository.Add(new User
+                {
+                    Email = register.Email,
+                    Password = register.Password
+                });
 
                 return RedirectToAction("Login");
             }
