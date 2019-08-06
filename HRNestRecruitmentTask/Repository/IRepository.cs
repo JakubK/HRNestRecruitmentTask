@@ -10,5 +10,8 @@ namespace HRNestRecruitmentTask.Repository
     public interface IRepository
     {
         IEnumerable<Contact> GetContacts();
+
+        void AddContact(Contact contact);
+        void AddContacts(IEnumerable<Contact> contacts);
     }
 }
