@@ -9,18 +9,18 @@ namespace HRNestRecruitmentTask.Services
 {
     public class DatabaseSeeder : IDatabaseSeeder
     {
-        IRepository _repository;
+        IRepository<Contact> _repository;
 
-        public DatabaseSeeder(IRepository repository)
+        public DatabaseSeeder(IRepository<Contact> repository)
         {
             _repository = repository;
         }
 
         public void Seed()
         {
-            if (_repository.GetContacts().Count() == 0)
+            if (_repository.GetAll().Count() == 0)
             {
-                _repository.AddContacts(new Contact[]
+                _repository.AddRange(new Contact[]
                 {
                     new Contact { Email = "A", Name = "John", Surname = "Doe", BirthDate = DateTime.Now },
                     new Contact { Email = "B", Name = "Dohn", Surname = "Boe", BirthDate = DateTime.Now },
