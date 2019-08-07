@@ -33,5 +33,10 @@ namespace HRNestRecruitmentTask.Repository
         {
             return context.Contacts;
         }
+
+        public Contact GetByEmail(string email)
+        {
+            return context.Contacts.First(x => x.Email == email);
+        }
     }
 }

@@ -31,5 +31,10 @@ namespace HRNestRecruitmentTask.Repository
         {
             return context.Users;
         }
+
+        public User GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
