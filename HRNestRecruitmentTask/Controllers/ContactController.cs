@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace HRNestRecruitmentTask.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         IRepository<Contact> _repository;
