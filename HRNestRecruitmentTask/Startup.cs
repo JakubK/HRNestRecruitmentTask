@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using System;
 
 [assembly: OwinStartupAttribute(typeof(HRNestRecruitmentTask.Startup))]
 namespace HRNestRecruitmentTask
@@ -14,7 +15,8 @@ namespace HRNestRecruitmentTask
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Auth/Login")
+                LoginPath = new PathString("/Auth/Login"),
+                ExpireTimeSpan = TimeSpan.FromMinutes(10)
             });
         }
     }
