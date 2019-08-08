@@ -1,0 +1,42 @@
+﻿@model HRNestRecruitmentTask.Models.Contact
+
+@{
+  ViewBag.Title = "Edit";
+  Layout = "~/Views/Layout.cshtml";
+}
+
+<h2>Edit Contact</h2>
+
+<form method="post">
+  @Html.HiddenFor(x => x.ID)
+  @Html.EditorFor(x => x.Email,new
+  {
+    placeholder = "Email"
+  })
+  @Html.ValidationMessageFor(x => x.Email)<br />
+
+  @Html.EditorFor(x => x.Name, new
+{
+  placeholder = "Name"
+})
+  @Html.ValidationMessageFor(x => x.Name)<br />
+
+  @Html.EditorFor(x => x.BirthDate,new
+    {
+      placeholder = "Birth Date"
+    })
+  @Html.ValidationMessageFor(x => x.BirthDate)<br />
+
+  @Html.EditorFor(x => x.Surname,new
+    {
+      placeholder = "Surname"
+    })
+  @Html.ValidationMessageFor(x => x.Surname)<br />
+
+  @Html.EditorFor(x => x.PhoneNumber, new
+{
+  placeholder = "PhoneNumber"
+})
+  @Html.ValidationMessageFor(x => x.PhoneNumber)<br />
+  <input type="submit"/>
+</form>
