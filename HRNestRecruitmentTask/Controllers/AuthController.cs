@@ -1,4 +1,5 @@
-﻿using HRNestRecruitmentTask.Models;
+﻿using HRNestRecruitmentTask.Helpers;
+using HRNestRecruitmentTask.Models;
 using HRNestRecruitmentTask.Repository;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace HRNestRecruitmentTask.Controllers
                     _repository.Add(new User
                     {
                         Email = register.Email,
-                        Password = register.Password
+                        PasswordHash = SHAHelper.GenerateSHA512String(register.Password)
                     });
 
                     return RedirectToAction("Login");
@@ -56,9 +57,9 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(_repository.GetAll().First(x => x.Email == login.Email && x.Password == login.Password) != null)
+                if(_repository.GetAll().First(x => x.Email == login.Email && x.PasswordHash == SHAHelper.GenerateSHA512String(login.Password)) != null)
                 {
-
+                    //Successful login
                 }
                 else
                 {
