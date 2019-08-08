@@ -8,10 +8,18 @@
 <body>
   <nav>
     @Html.ActionLink("Home", "Index", "Home")
-    @Html.ActionLink("Register", "Register", "Auth")
-    @Html.ActionLink("Login", "Login", "Auth")
     @Html.ActionLink("Manage the Data", "Index", "Contact")
-    @Html.ActionLink("Log out", "Logout", "Auth")
+
+    @if (User.Identity.IsAuthenticated)
+    {
+      @Html.ActionLink("Log out", "Logout", "Auth");
+    }
+    else
+    { 
+      @Html.ActionLink("Register", "Register", "Auth");
+      @Html.ActionLink("Login", "Login", "Auth");
+    }
+
   </nav>
     @RenderBody()
 </body>
