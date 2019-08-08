@@ -54,7 +54,14 @@ namespace HRNestRecruitmentTask.Controllers
 
         public ActionResult Login()
         {
+            AuthenticationManager.SignOut();
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

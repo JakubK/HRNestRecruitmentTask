@@ -34,7 +34,7 @@ namespace HRNestRecruitmentTask.Controllers
             {
                 var contact = new Contact();
 
-                var emailRecord = _repository.GetAll().First(x => x.Email == form.Email);
+                var emailRecord = _repository.GetAll().FirstOrDefault(x => x.Email == form.Email);
 
                 if(emailRecord != null)
                 {
