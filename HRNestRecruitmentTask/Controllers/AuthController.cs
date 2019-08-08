@@ -1,20 +1,27 @@
 ﻿using HRNestRecruitmentTask.Helpers;
 using HRNestRecruitmentTask.Models;
 using HRNestRecruitmentTask.Repository;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using HRNestRecruitmentTask.Context;
 
 namespace HRNestRecruitmentTask.Controllers
 {
     public class AuthController : Controller
     {
-        IRepository<User> _repository;
-        public AuthController(IRepository<User> repo)
+        UserManager<ApplicationUser> UserManager { get; set; }
+        public AuthController(UserContext ctx)
         {
-            _repository = repo;
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
         }
 
         public ActionResult Register()
@@ -27,14 +34,12 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid && register.Password == register.PasswordRepeat)
             {
-                if (_repository.GetAll().First(x => x.Email == register.Email) == null)
+                var u = new ApplicationUser() { UserName = register.Email };
+                u.Email = register.Email;
+                u.UserName = register.Email;
+                var result = UserManager.Create(u, register.Password);
+                if (result.Succeeded)
                 {
-                    _repository.Add(new User
-                    {
-                        Email = register.Email,
-                        PasswordHash = SHAHelper.GenerateSHA512String(register.Password)
-                    });
-
                     return RedirectToAction("Login");
                 }
                 else
@@ -57,18 +62,33 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(_repository.GetAll().First(x => x.Email == login.Email && x.PasswordHash == SHAHelper.GenerateSHA512String(login.Password)) != null)
+                var user = UserManager.Find(login.Email, login.Password);
+                if(user != null)
                 {
                     //Successful login
+                    SignIn(user, false);
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    //Bad Credentials
-                    ModelState.AddModelError("", "Credentials provided by you are invalid");
-                }
+
+                ModelState.AddModelError("", "Credentials provided by you are invalid");
             }
 
             return View();
+        }
+
+        private void SignIn(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
     }
 }
