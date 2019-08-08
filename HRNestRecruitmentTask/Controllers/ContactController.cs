@@ -21,6 +21,33 @@ namespace HRNestRecruitmentTask.Controllers
             return View(_repository.GetAll());
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(ContactForm form)
+        {
+            if(ModelState.IsValid)
+            {
+                var contact = new Contact();
+
+                contact.Email = form.Email;
+                contact.BirthDate = form.BirthDate;
+                contact.Name = form.Name;
+                contact.Surname = form.Surname;
+                contact.PhoneNumber = form.PhoneNumber;
+
+                _repository.Add(contact);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         public ActionResult Delete(int id)
         {
             _repository.Delete(_repository.Get(id));
