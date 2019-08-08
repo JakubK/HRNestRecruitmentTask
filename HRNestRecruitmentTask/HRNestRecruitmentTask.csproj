@@ -126,18 +126,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SaltHelper.cs" />
     <Compile Include="Helpers\SHAHelper.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactForm.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ContactRepository.cs" />
-    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\DatabaseSeeder.cs" />
     <Compile Include="Services\IDatabaseSeeder.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
