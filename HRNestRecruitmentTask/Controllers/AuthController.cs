@@ -19,9 +19,11 @@ namespace HRNestRecruitmentTask.Controllers
     public class AuthController : Controller
     {
         UserManager<ApplicationUser> UserManager { get; set; }
+        UserContext context;
         public AuthController(UserContext ctx)
         {
             UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
+            context = ctx;
         }
 
         public ActionResult Register()
@@ -37,14 +39,15 @@ namespace HRNestRecruitmentTask.Controllers
                 var u = new ApplicationUser() { UserName = register.Email };
                 u.Email = register.Email;
                 u.UserName = register.Email;
-                var result = UserManager.Create(u, register.Password);
+                u.Salt = SaltHelper.GenerateSalt();
+                u.PasswordHash = SHAHelper.GenerateSHA512String(register.Password + u.Salt);
+                var result = UserManager.Create(u, u.PasswordHash);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    //Email taken
                     ModelState.AddModelError("", "The email that you passed is already taken");
                 }
             }
@@ -69,12 +72,16 @@ namespace HRNestRecruitmentTask.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = UserManager.Find(login.Email, login.Password);
-                if(user != null)
+                var user = context.Users.FirstOrDefault(x => x.Email == login.Email);
+                if (user != null)
                 {
-                    //Successful login
-                    SignIn(user, false);
-                    return RedirectToAction("Index", "Home");
+                    user = UserManager.Find(login.Email, SHAHelper.GenerateSHA512String(login.Password + user.Salt));
+                    if (user != null)
+                    {
+                        //Successful login
+                        SignIn(user, false);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
 
                 ModelState.AddModelError("", "Credentials provided by you are invalid");
