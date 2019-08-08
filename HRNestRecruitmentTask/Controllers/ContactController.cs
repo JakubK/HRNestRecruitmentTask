@@ -21,10 +21,37 @@ namespace HRNestRecruitmentTask.Controllers
             return View(_repository.GetAll());
         }
 
-        public ActionResult Delete(string email)
+        public ActionResult Delete(int id)
         {
-            _repository.Delete(_repository.GetByEmail(email));
+            _repository.Delete(_repository.Get(id));
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View(_repository.Get(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Contact data)
+        {
+            if (ModelState.IsValid)
+            {
+                var record = _repository.Get(data.ID);
+
+                if(record == null)
+                {
+                    _repository.Update(data);
+                    return RedirectToAction("Index");
+                }
+
+                if (record.ID == data.ID || record == null)
+                {
+                    _repository.Update(data);
+                    return RedirectToAction("Index");
+                }
+            }
+            return View();
         }
     }
 }
