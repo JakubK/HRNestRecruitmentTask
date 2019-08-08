@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,10 +7,8 @@ using System.Web;
 
 namespace HRNestRecruitmentTask.Models
 {
-    public class User
+    public class ApplicationUser : IdentityUser
     {
-        [Key]
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        public string Salt { get; set; }
     }
 }
