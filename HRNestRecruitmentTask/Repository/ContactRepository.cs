@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using HRNestRecruitmentTask.Context;
@@ -44,7 +45,6 @@ namespace HRNestRecruitmentTask.Repository
         {
             return context.Contacts;
         }
-
 
         public void Update(Contact data)
         {
