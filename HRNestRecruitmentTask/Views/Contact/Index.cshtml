@@ -1,0 +1,41 @@
+﻿@using HRNestRecruitmentTask.Models
+@model IEnumerable<Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<h2>Manage Data</h2>
+
+<button>Create new</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Birth Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Contact c in Model)
+    {
+    <tr>
+      <td>@c.Name</td>
+      <td>@c.Surname</td>
+      <td>@c.Email</td>
+      <td>@c.PhoneNumber</td>
+      <td>@c.BirthDate</td>
+      <td>
+        <button>Edit</button>
+        @Html.ActionLink("Delete", "Delete", new { email = c.Email })
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
