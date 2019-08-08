@@ -1,11 +1,6 @@
-﻿using HRNestRecruitmentTask.Context;
-using HRNestRecruitmentTask.Models;
+﻿using HRNestRecruitmentTask.Models;
 using HRNestRecruitmentTask.Repository;
 using HRNestRecruitmentTask.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HRNestRecruitmentTask.Controllers

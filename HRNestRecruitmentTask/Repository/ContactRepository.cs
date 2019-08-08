@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using HRNestRecruitmentTask.Context;
 using HRNestRecruitmentTask.Models;
-using HRNestRecruitmentTask.Services;
 
 namespace HRNestRecruitmentTask.Repository
 {
