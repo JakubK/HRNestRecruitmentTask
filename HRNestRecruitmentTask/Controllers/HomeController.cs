@@ -24,9 +24,9 @@ namespace HRNestRecruitmentTask.Controllers
             return View(_repository.GetAll());
         }
 
-        public ActionResult Details(string email)
+        public ActionResult Details(int id)
         {
-            return View(_repository.GetByEmail(email));
+            return View(_repository.Get(id));
         }
     }
 }

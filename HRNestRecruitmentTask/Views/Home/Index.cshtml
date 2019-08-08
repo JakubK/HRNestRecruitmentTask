@@ -16,7 +16,7 @@
   <tbody>
     @foreach (Contact c in Model)
     {
-    <tr onclick="location.href='@(Url.Action("Details", "Home", new { email = c.Email }))'">
+    <tr onclick="location.href='@(Url.Action("Details", "Home", new { id = c.ID }))'">
       <td>@c.Name</td>
       <td>@c.Surname</td>
     </tr>

@@ -8,8 +8,6 @@
 
 <h2>Manage Data</h2>
 
-<button>Create new</button>
-
 <table>
   <thead>
     <tr>
@@ -31,11 +29,11 @@
       <td>@c.PhoneNumber</td>
       <td>@c.BirthDate</td>
       <td>
-        <button>Edit</button>
-        @Html.ActionLink("Delete", "Delete", new { email = c.Email })
+        @Html.ActionLink("Edit","Edit", new { id= c.ID })
+        @Html.ActionLink("Delete", "Delete", new { id = c.ID })
       </td>
     </tr>
-    }
+      }
   </tbody>
 </table>
 
