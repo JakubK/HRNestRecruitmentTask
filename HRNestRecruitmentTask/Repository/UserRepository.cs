@@ -32,12 +32,17 @@ namespace HRNestRecruitmentTask.Repository
             throw new NotImplementedException();
         }
 
+        public User Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<User> GetAll()
         {
             return context.Users;
         }
 
-        public User GetByEmail(string email)
+        public void Update(User data)
         {
             throw new NotImplementedException();
         }
