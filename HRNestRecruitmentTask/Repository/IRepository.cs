@@ -12,6 +12,8 @@ namespace HRNestRecruitmentTask.Repository
         IEnumerable<T> GetAll();
         T GetByEmail(string email);
 
+        void Delete(T entity);
+
         void Add(T entity);
         void AddRange(IEnumerable<T> entities);
     }

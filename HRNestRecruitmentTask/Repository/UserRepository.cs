@@ -27,6 +27,11 @@ namespace HRNestRecruitmentTask.Repository
             context.SaveChanges();
         }
 
+        public void Delete(User entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<User> GetAll()
         {
             return context.Users;

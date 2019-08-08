@@ -29,6 +29,12 @@ namespace HRNestRecruitmentTask.Repository
             context.SaveChanges();
         }
 
+        public void Delete(Contact entity)
+        {
+            context.Contacts.Remove(entity);
+            context.SaveChanges();
+        }
+
         public IEnumerable<Contact> GetAll()
         {
             return context.Contacts;
