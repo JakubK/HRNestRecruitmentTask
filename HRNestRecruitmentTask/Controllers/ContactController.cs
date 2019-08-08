@@ -33,6 +33,14 @@ namespace HRNestRecruitmentTask.Controllers
             {
                 var contact = new Contact();
 
+                var emailRecord = _repository.GetAll().First(x => x.Email == form.Email);
+
+                if(emailRecord != null)
+                {
+                    ModelState.AddModelError("", "The email is already taken");
+                    return View();
+                }
+
                 contact.Email = form.Email;
                 contact.BirthDate = form.BirthDate;
                 contact.Name = form.Name;
@@ -66,13 +74,14 @@ namespace HRNestRecruitmentTask.Controllers
             {
                 var record = _repository.Get(data.ID);
 
-                if(record == null)
+                var emailRecord = _repository.GetAll().FirstOrDefault(x => x.Email == data.Email);
+                if(emailRecord != null && emailRecord.ID != record.ID)
                 {
-                    _repository.Update(data);
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("", "The email is already taken");
+                    return View();
                 }
 
-                if (record.ID == data.ID || record == null)
+                if (record.ID == data.ID)
                 {
                     _repository.Update(data);
                     return RedirectToAction("Index");
